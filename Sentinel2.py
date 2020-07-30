@@ -36,6 +36,10 @@ def load_channels(dataset_path, channels, resolution, img_data_path=None, s2_qua
       reflectance; defaults to the value used by the older ASI models, but
       QUANT_VAL_S2 should be used for AFAI or new ASI models
 
+    verbose : boolean (default: True)
+      Whether to report progress to screen
+
+
   Returns:
 
     A dictionary with following structure:
@@ -98,7 +102,7 @@ def load_channels(dataset_path, channels, resolution, img_data_path=None, s2_qua
 
 # ==============================================================================
 
-def load_SCL(dataset_path, resolution, verbose=True):
+def load_SCL(dataset_path, resolution):
   """ Load Scene Classification Layer at given resolution from a Sentinel-2
   dataset
 
@@ -109,12 +113,6 @@ def load_SCL(dataset_path, resolution, verbose=True):
 
     resolution : int or string
       Sentinel-2 spatial resolution to use
-
-  Options:
-
-    verbose : boolean (default. True)
-      Sentinel-2 QUANTIFICATION_VALUE to convert from digital levels to
-      reflectance; defaults to the value used by the older ASI models
 
   Returns:
 

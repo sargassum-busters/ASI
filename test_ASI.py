@@ -11,7 +11,7 @@ from ASI import ASI_Index
 test_set_path = "T16QEJ_20190706T160839_ML_full.npy"
 
 # Path to the ASI model
-model_path = "test.h5"
+model_path = "ASImodelColabv2.h5"
 
 # Batch size for evaluation
 batch_size = 2048
