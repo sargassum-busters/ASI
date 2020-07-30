@@ -150,7 +150,7 @@ def compute_index(dataset_path, index, apply_mask=True, mask_keep_categs=(6,10),
       print("\nWrote {}".format(out_path))
 
   # --------------------------------------------------
-  # Save result to disk as GeoTIFF, if requested
+  # Save result to disk as JPEG2000, if requested
 
   if save_jp2 and result.dtype not in ["utin8"]:
     print("\nWarning: can't save float image as JPEG2000; skipping")

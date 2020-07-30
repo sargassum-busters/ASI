@@ -39,7 +39,6 @@ def load_channels(dataset_path, channels, resolution, img_data_path=None, s2_qua
     verbose : boolean (default: True)
       Whether to report progress to screen
 
-
   Returns:
 
     A dictionary with following structure:
@@ -102,7 +101,7 @@ def load_channels(dataset_path, channels, resolution, img_data_path=None, s2_qua
 
 # ==============================================================================
 
-def load_SCL(dataset_path, resolution):
+def load_SCL(dataset_path, resolution, return_path=False):
   """ Load Scene Classification Layer at given resolution from a Sentinel-2
   dataset
 
@@ -114,9 +113,14 @@ def load_SCL(dataset_path, resolution):
     resolution : int or string
       Sentinel-2 spatial resolution to use
 
+  Oprions:
+
+    return_path : boolean (default: False)
+      Whether to return the path to the found SCL instead of the data
+
   Returns:
 
-    A boolean numpy array with the SCL
+    A numpy array with the SCL, or the file path if return_path is true
 
   """
   # ----------------------------------------------------------------------------
@@ -139,7 +143,10 @@ def load_SCL(dataset_path, resolution):
   SCL_im = rasterio.open(SCL_path, driver='JP2OpenJPEG')
   SCL = SCL_im.read(1)
 
-  return SCL
+  if return_path:
+    return SCL_path
+  else:
+    return SCL
 
 # ==============================================================================
 
