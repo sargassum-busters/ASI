@@ -10,7 +10,7 @@ import sys
 import numpy as np
 
 from AFAI import AFAI_Index
-import detect_sargassum
+from detect_sargassum import detect_sargassum
 import Sentinel2
 
 # ==============================================================================
@@ -91,7 +91,7 @@ def generate_training_set(dataset_path, out_dir="./", full_array=True, AFAI_thre
   AFAI_index = AFAI_Index(verbose=verbose)
 
   # Create classification mask from AFAI
-  AFAI_mask = detect_sargassum.compute_index(dataset_path, AFAI_index, apply_mask=True, mask_keep_categs=mask_keep_categs, masked_value=2, threshold=AFAI_threshold, resolution="20", save_npy=False, save_geotiff=False, save_jp2=False, verbose=verbose)
+  AFAI_mask = detect_sargassum(dataset_path, AFAI_index, apply_mask=True, mask_keep_categs=mask_keep_categs, masked_value=2, threshold=AFAI_threshold, resolution="20", save_npy=False, save_geotiff=False, save_jp2=False, verbose=verbose)
 
   num_sarg = np.count_nonzero(AFAI_mask == 1)
   num_not_sarg = np.count_nonzero(AFAI_mask == 0)

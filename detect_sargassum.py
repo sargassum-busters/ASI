@@ -16,7 +16,7 @@ from ASI import ASI_Index
 
 # ==============================================================================
 
-def compute_index(dataset_path, index, apply_mask=True, mask_keep_categs=(6,10), masked_value=np.nan, threshold=None, resolution="20", save_npy=False, save_geotiff=False, save_jp2=False, outdir=None, verbose=True):
+def detect_sargassum(dataset_path, index, apply_mask=True, mask_keep_categs=(6,10), masked_value=np.nan, threshold=None, resolution="20", save_npy=False, save_geotiff=False, save_jp2=False, outdir=None, verbose=True):
   """Computes a sargassum index from a Sentinel-2 dataset.
 
 
@@ -67,7 +67,7 @@ def compute_index(dataset_path, index, apply_mask=True, mask_keep_categs=(6,10),
   if verbose:
     print("\nLoading SCL mask ...")
 
-  SCL = Sentinel2.load_SCL(dataset_path, resolution, verbose=verbose)
+  SCL = Sentinel2.load_SCL(dataset_path, resolution)
   SCL_mask = np.isin(SCL, mask_keep_categs)
 
   if verbose:
@@ -190,4 +190,4 @@ if __name__ == "__main__":
   # index = AFAI_Index()
   index = ASI_Index(model_path="ASImodelColabv2.h5", batch_size=2048)
 
-  compute_index(sys.argv[1], index, outdir="./", apply_mask=False, mask_keep_categs=[6], save_npy=True, save_geotiff=True, save_jp2=False)
+  detect_sargassum(sys.argv[1], index, outdir="./", apply_mask=False, mask_keep_categs=[6], save_npy=True, save_geotiff=True, save_jp2=False)

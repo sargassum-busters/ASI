@@ -5,7 +5,7 @@
 import sys
 
 from AFAI import AFAI_Index
-import detect_sargassum
+from detect_sargassum import detect_sargassum
 
 # ==============================================================================
 # Program configuration
@@ -30,6 +30,6 @@ verbose = True
 index = AFAI_Index(verbose=verbose)
 
 # Compute index on image
-detect_sargassum.compute_index(dataset_path, index, outdir=outdir, apply_mask=apply_mask, mask_keep_categs=mask_keep_categs, save_npy=save_npy, save_geotiff=save_geotiff, save_jp2=save_jp2, verbose=verbose)
+detect_sargassum(dataset_path, index, outdir=outdir, apply_mask=apply_mask, mask_keep_categs=mask_keep_categs, save_npy=save_npy, save_geotiff=save_geotiff, save_jp2=save_jp2, verbose=verbose)
 
 # ==============================================================================

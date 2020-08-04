@@ -5,7 +5,7 @@
 import sys
 
 from ASI import ASI_Index
-import detect_sargassum
+from detect_sargassum import detect_sargassum
 
 # ==============================================================================
 # Program configuration
