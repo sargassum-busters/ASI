@@ -135,6 +135,7 @@ def compute_index(dataset_path, index, apply_mask=True, mask_keep_categs=(6,10),
     # Copy image metadata from SCL mask
     img_meta['driver'] = "GTiff"
     img_meta['dtype'] = result.dtype
+    img_meta['count'] = 1
 
     index_name = index.name.replace(" ", "_")
     fname = "{}_{}_{}.tif".format(tile, date.strftime("%Y%m%d"), index_name)
