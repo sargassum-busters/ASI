@@ -1,4 +1,4 @@
-# A wrapper program to compute the AFAI of a given Sentinel-2 L2A product
+# Driver program to compute the ASI index of a given Sentinel-2 L2A product
 
 # ==============================================================================
 
@@ -9,29 +9,46 @@ from detect_sargassum import detect_sargassum
 
 # ==============================================================================
 # Program configuration
-# See detect_sargassum documentation for details
+# See detect_sargassum documentation for further details
 
-dataset_path = sys.argv[1]
+# Path to the SAFE directory containing the Sentinel-2 image
+dataset_path = "./T16QEJ/S2B_MSIL2A_20190706T160839_N0212_R140_T16QEJ_20190706T201005.SAFE"
 
-outdir = "./"
-
+# Path to the ASI model to use
 model_path = "ASImodelColabv2.h5"
 
-apply_mask = False
+# Output directory
+out_dir = "./"
+
+# Mask out pixels using SCL?
+apply_mask = True
+
+# List of SCl labels to keep
 mask_keep_categs = [6]
+
+# If set to a numeric value, threshold the image using this; the resulting
+# image will have only 0 and 1 to represent values below/above the threshold,
+# and 2 to represent invalid values
 threshold = None
-save_npy = False
+
+# Save the result as georeferenced GeoTIFF?
 save_geotiff = True
+
+# Save the result as a raw numpy array?
+save_npy = True
+
+# Save the result as georeferenced OpenJPEG2000? Only when thresholding
 save_jp2 = False
-resolution = "20"
+
+# Report actions to screen?
 verbose = True
 
 # ==============================================================================
 
-# Initialize ASI index
+# Initialize ASI index, loading the specified model
 index = ASI_Index(model_path=model_path, verbose=verbose)
 
 # Compute index on image
-detect_sargassum.compute_index(dataset_path, index, outdir=outdir, apply_mask=apply_mask, mask_keep_categs=mask_keep_categs, save_npy=save_npy, save_geotiff=save_geotiff, save_jp2=save_jp2, verbose=verbose)
+result = detect_sargassum(dataset_path, index, out_dir=out_dir, apply_mask=apply_mask, mask_keep_categs=mask_keep_categs, threshold=threshold, save_npy=save_npy, save_geotiff=save_geotiff, save_jp2=save_jp2, verbose=verbose)
 
 # ==============================================================================

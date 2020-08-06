@@ -10,7 +10,7 @@ import numpy as np
 
 # =============================================================================
 
-def plot_npy(file_path, out_dir="./", cmap="viridis", resolution=20, show_colorbar=True, save_image=False, show_image=True):
+def plot_npy(file_path, out_dir="./", cmap="viridis", save_image=False, show_image=True, show_colorbar=True):
 
   data = np.load(file_path)
 
@@ -65,24 +65,24 @@ def plot_npy(file_path, out_dir="./", cmap="viridis", resolution=20, show_colorb
 
 
 # ==============================================================================
-# PROGRAM CONFIGURATION
 
 if __name__ == "__main__":
+
+  # PROGRAM CONFIGURATION
 
   # The path to the GeoTIFF file to read -- currently passed as command line arg
   file_path = sys.argv[1]
 
   # Output directory for all results
-  out_dir = "./tests/"
+  out_dir = "./"
 
-  # Sentinel-2 spatial resolution to use,
-  resolution = 20
-
-  # Show colorbar?
-  show_colorbar = False
-
-  # Show and/or save resulting image
+  # Show or save resulting image?
   save_image = True
   show_image = False
 
-  plot_npy(file_path, out_dir=out_dir, resolution=resolution, show_colorbar=show_colorbar, save_image=save_image, show_image=show_image)
+  # Show colorbar (when showing image)?
+  show_colorbar = False
+
+  # ----------------------------------------------------------------------------
+
+  plot_npy(file_path, out_dir=out_dir, show_colorbar=show_colorbar, save_image=save_image, show_image=show_image)

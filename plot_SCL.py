@@ -1,4 +1,6 @@
-# Plots the Scene Classification Layer (SCL) of a Sentinel-2 SAFE dataset
+# Plots the Scene Classification Layer (SCL) of a Sentinel-2 dataset
+
+# ==============================================================================
 
 import glob
 import os
@@ -137,7 +139,7 @@ if __name__ == "__main__":
   # Output directory for all results
   out_dir = "./"
 
-  # Sentinel-2 spatial resolution to use,
+  # Sentinel-2 spatial resolution to use
   resolution = 20
 
   # Show image?

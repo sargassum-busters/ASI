@@ -1,6 +1,10 @@
 # A class to compute the AFAI index
 
-class AFAI_Index:
+from Sargassum_Index import Sargassum_Index
+
+# ==============================================================================
+
+class AFAI_Index(Sargassum_Index):
   """ Wang & HU's Alternative Floating Algae Index (AFAI)"""
 
   # ----------------------------------------------------------------------------
@@ -15,8 +19,12 @@ class AFAI_Index:
     "SWIR": {"ch": "B8A", "lambda": 865.}   # ~ MODIS 869
   }
 
+  # ----------------------------------------------------------------------------
+
   def __init__(self, verbose=True):
     self.verbose = verbose
+
+  # ----------------------------------------------------------------------------
 
   def compute(self, channels_data):
 
@@ -37,3 +45,5 @@ class AFAI_Index:
       print("Max: {}".format(AFAI.max()))
 
     return AFAI
+
+# ==============================================================================

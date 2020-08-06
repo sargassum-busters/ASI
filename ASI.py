@@ -12,9 +12,11 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 from tensorflow import keras
 
+from Sargassum_Index import Sargassum_Index
+
 # ==============================================================================
 
-class ASI_Index:
+class ASI_Index(Sargassum_Index):
   """Aquae Satus Invenio: "discovery over the waters".
 
   A new Machine Learning algorithm for the satellite detection of floating
@@ -27,6 +29,7 @@ class ASI_Index:
 
   # ============================================================================
 
+  # Name of the index
   name = "ASI"
 
   # Sentinel-2 channels used to compute ASI
@@ -35,14 +38,13 @@ class ASI_Index:
 
   # ============================================================================
 
-  def __init__(self, model_path=None, verbose=True, batch_size=2048):
+  def __init__(self, model_path=None, verbose=True):
     """Can optionally define the path to a model so it's loaded at instance
     construction"""
 
     self.verbose = verbose
     self.model_path = None
     self.model = None
-    self.batch_size = batch_size
     if model_path is not None:
       self.load_model(model_path)
 
@@ -57,10 +59,10 @@ class ASI_Index:
         A dictionary with a dataset loaded by Sentinel2.load_channels(). Must
         contain the ASI channels.
 
-    Oprions:
+    Options:
 
       batch_size : integer (default: 2048)
-        The batch size to use in training (passed to keras)
+        The batch size to use in the prediction (passed to keras)
 
     Returns:
 
@@ -68,6 +70,8 @@ class ASI_Index:
       ASI predictions, which are numbers in [0, 1] interpreted as the
       probability that each pixel contains sargassum.
     """
+
+    assert self.required_channels is not None
 
     NCH = len(channels_data)
     NX, NY = channels_data[self.required_channels[0]].shape
@@ -87,14 +91,11 @@ class ASI_Index:
         s = "Executing on {} GPU{}".format(len(GPUs), "s" if len(GPUs) > 1 else "", GPUs)
       else:
         s = "Executing on CPU"
-      if self.batch_size is None:
-        s += " using automatic batch_size"
-      else:
-        s += " using batch_size = {}".format(self.batch_size)
+      s += " using batch_size = {}".format(batch_size)
       print(s)
 
     # Run through model
-    result = self.model.predict(data, verbose=self.verbose, batch_size=self.batch_size)
+    result = self.model.predict(data, verbose=self.verbose, batch_size=batch_size)
 
     # Reshape result back to original image shape
     result = result.reshape((NX, NY))

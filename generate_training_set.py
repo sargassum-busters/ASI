@@ -171,4 +171,4 @@ if __name__ == "__main__":
     print("Pass path to Sentinel-2 L2A dataset as argument")
     sys.exit()
 
-  generate_training_set(sys.argv[1], full_array=True)
+  generate_training_set(sys.argv[1], full_array=False)
