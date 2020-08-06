@@ -58,7 +58,7 @@ Note that a subdir with the name of the tile will automatically be created, so t
 
 Here's the true-color rendering of the tile:
 
-IMAGE
+![true color image of tile](examples/T16QEJ_20190706_TCI.jpeg)
 
 **Calculating ASI**
 
@@ -91,7 +91,7 @@ ASI loads the given model (neural network), masks all pixels of the image except
 
 The resulting ASI image, with sargassum colored as bright green, water as blue and masked pixels (clouds, land, etc.) as gray looks as follows:
 
-IMAGE
+![ASI result](examples/T16QEJ_20190706_ASI.png)
 
 (Of course, it's better to load the GeoTIFF in QGIS or another GIS software!)
 
