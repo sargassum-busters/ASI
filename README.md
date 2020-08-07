@@ -2,6 +2,14 @@
 
 A new Machine Learning algorithm for the remote detection of floating sargassum in satellite imagery.
 
+ASI was created during the [Ocean Hackaton](https://www.campusmer.fr/Ocean-Hackathon_-3567-0-0-0.html) 2019, a "hacking" competition organized annually by the [Campus Mondial de la Mer](https://www.campusmer.fr/). The algorithm and project, developed at the Mexico City branch of the contest by a team of Mexican students and researchers in collaboration with several Mexican institutions, [won 1st place](https://www.afd.fr/en/actualites/ocean-hackathon-2019-algorithm-advanced-sargassum-detection) at the international finals in Brest, France.
+
+© 2020 [Sargassum Busters](https://oceanhackathonmex.wixsite.com/sargassumbusters) / [CONABIO](https://www.gob.mx/conabio) / [INECC](https://www.gob.mx/inecc) / [IFAL](https://ifal.mx/)
+
+ASI is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+### Description
+
 Aqua Satus Invenio ("discovery of the waters"), or ASI, uses deep neural networks to detect sargassum in satellite images. It is designed to work with freely-available L2A [Sentinel-2](https://sentinel.esa.int/web/sentinel/missions/sentinel-2) imagery (bottom-of-atmosphere reflectance) at 20 m spatial resolution, much higher than what is typically used.
 
 The neural network is initially trained using Wang & Hu's Alternative Floating Algae Index ([ref](https://www.sciencedirect.com/science/article/abs/pii/S0034425716301833)), but after training it makes predictions independently of the AFAI, and the code is written so that training data generated from other sources could potentially be be used.
