@@ -12,9 +12,9 @@ ASI is free software: you can redistribute it and/or modify it under the terms o
 
 Aqua Satus Invenio ("discovery of the waters"), or ASI, uses deep neural networks to detect sargassum in satellite images. It is designed to work with freely-available L2A [Sentinel-2](https://sentinel.esa.int/web/sentinel/missions/sentinel-2) imagery (bottom-of-atmosphere reflectance) at 20 m spatial resolution, much higher than what is typically used.
 
-The neural network is initially trained using Wang & Hu's Alternative Floating Algae Index ([ref](https://www.sciencedirect.com/science/article/abs/pii/S0034425716301833)), but after training it makes predictions independently of the AFAI, and the code is written so that training data generated from other sources could potentially be be used.
+The neural network is initially trained using Wang & Hu's Alternative Floating Algae Index ([ref](https://www.sciencedirect.com/science/article/abs/pii/S0034425716301833)), but after training it makes predictions independently of the AFAI, and the code is written so that training data generated from other sources can potentially be used.
 
-The codebase is highly flexible and can output the detection results in several georeferenced formats (GeoTIFF, OpenJPEG2000, GeoJSON) or as raw data to be analyzed elsewhere.
+The codebase is highly flexible and can output the detection results in several georeferenced formats (GeoTIFF, OpenJPEG2000, GeoJSON) or as raw numpy data.
 
 ### Requirements
 
@@ -30,7 +30,6 @@ Optional:
 
 - [matplotlib](https://pypi.org/project/matplotlib/) & [pillow](https://pypi.org/project/Pillow/): only required if direct plotting of results is desired
 - [pandas](https://pypi.org/project/pandas/), [geopandas](https://pypi.org/project/geopandas/) & [GDAL](https://pypi.org/project/GDAL/): only required for the polygonization program
-
 
 ### Usage example
 
@@ -76,7 +75,7 @@ The program configuration has quite a few options. The most relevant are:
 
 `dataset_path`: the path to the .SAFE directory.
 
-`model_path`: the path to a previouslt trained ASI model; two models are included in the distributed code
+`model_path`: the path to a previously trained ASI model; two models are included in the distributed code
 
 `save_geotiff`, `save_npy` and `save_jp2`: which formats (multiple can be selected) the result should be output in; GeoTIFF is the preferred format (and JP2 can only be used if the image is thresholded).
 
@@ -93,7 +92,7 @@ Using the following options,
     save_jp2 = False
     verbose = True
 
-ASI loads the given model (neural network), masks all pixels of the image except those classified as water (SCL=6), and outputs the resulting image as a GeoTIFF, which contains values in [0,1] indicating the "probability" that each pixel contains sargassum (or a nan in masked pixels).
+ASI loads the given model (neural network), masks all pixels of the image except those classified as water (SCL=6), and outputs the resulting image as a GeoTIFF, which contains values in [0,1] indicating the "probability" that each pixel contains sargassum (or a NaN in masked pixels).
 
 **Results**
 
